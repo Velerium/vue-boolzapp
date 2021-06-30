@@ -103,7 +103,7 @@
                                 </div>
 
                                 <div class="text col-10">
-                                    <input type="text" placeholder="Scrivi un messaggio...">
+                                    <input id="text-box" v-model="writingMessage" v-on:keyup.enter="send" type="text" placeholder="Scrivi un messaggio...">
                                 </div>
 
                                 <div class="col">

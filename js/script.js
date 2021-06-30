@@ -32,7 +32,7 @@ new Vue (
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
-                            text: 'Ciao come stai?',
+                            text: 'Ciao, come stai?',
                             status: 'sent'
                         },
                         {
@@ -91,6 +91,8 @@ new Vue (
             findAvatar: '',
             recipientName: '',
             personIndex: 0,
+            writingMessage: '',
+            messageCounter: 2,
 
         },
 
@@ -101,6 +103,8 @@ new Vue (
 
             dataFind: function(index) {
 
+                this.writingMessage = '';
+
                 let x = this.contacts[index].avatar;
                 this.findAvatar = this.getAvatar(x);
 
@@ -108,6 +112,8 @@ new Vue (
                 document.querySelector('.messages').style.display = 'flex';
 
                 this.personIndex = index;
+
+                document.querySelector('#text-box').focus();
             },
 
             sentReceived: function(personIndex, index) {
@@ -116,6 +122,25 @@ new Vue (
                 } else if (this.contacts[personIndex].messages[index].status === 'received') {
                     return 'received';
                 }
+            },
+
+            send: function() {
+
+                if(this.writingMessage === '') {
+                    return;
+                }
+
+                let message = {
+                    date: 'No idea how to set the time.',
+                    text: this.writingMessage,
+                    status: 'sent',
+                }
+
+                this.contacts[this.personIndex].messages.push(message)
+                document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
+                this.messageCounter++;
+
+                this.writingMessage = '';
             }
         },
 
