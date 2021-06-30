@@ -4,7 +4,14 @@
     box-sizing: border-box;
 }
 
-.container-fluid {
+
+p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.background {
     display: flex;
     height: 100vh;
     background: linear-gradient(to bottom, #429488 12%, #d8dbd8 12%);
@@ -15,7 +22,9 @@
     display: flex;
     flex-grow: 1;
     margin: 0 auto;
+    padding: 0;
     background-color: #fff;
+    justify-content: center;
 }
 
 .ui {
@@ -30,7 +39,7 @@
 }
 
 .user img {
-    width: 20%;
+    width: 50px;
     border-radius: 50%;
 }
 
@@ -74,12 +83,6 @@
     justify-content: center;
 }
 
-.notif-info p {
-    margin: 0;
-    font-size: 15px;
-    font-weight: 500;
-}
-
 .notif-info span {
     font-size: 13px;
     color: #628295;
@@ -102,7 +105,7 @@
     margin-right: 12px;
 }
 
-.chats .search input {
+.chats .search input, .chat-input input {
     border: none;
     outline: none;
 }
@@ -112,7 +115,7 @@
 }
 
 .chats .chat-list img{
-    width: 20%;
+    width: 70px;
     border-radius: 50%;
     margin-right: 12px;
 }
@@ -121,6 +124,82 @@
     font-weight: 500;
 }
 
-.left {
-    border-right: 1px solid black;
+.bg {
+    background-image: url(../img/mine.jpg);
+}
+
+.messages {
+    display: none;
+    height: 100%;
+    flex-direction: column;
+}
+
+.recipient {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eaeaea;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.recipient > div {
+    display: flex;
+    align-items: center;
+}
+
+.recipient .userPic {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.recipient span {
+    vertical-align: middle;
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+}
+
+.recipient > div > div {
+    display: inline-block;
+}
+
+.options {
+    justify-content: flex-end;
+}
+
+.options i {
+    color: #b1b1b1;
+    margin-right: 18px;
+}
+
+.chat-body {
+    flex-grow: 1;
+}
+
+.chat-input {
+    align-items: center;
+    background-color: #eaeaea;
+    height: 72px;
+}
+
+.chat-input i {
+    font-size: 24px;
+}
+
+.chat-input > div {
+    text-align: center;
+    color: #666;
+}
+
+.text {
+    display: flex;
+    height: 70%;
+}
+
+.chat-input input {
+    border-radius: 5px;
+    flex-grow: 1;
+    padding-left: 12px;
 }

@@ -86,11 +86,26 @@ new Vue (
                         }
                     ],
                 },
-            ]
+            ],
+
+            findAvatar: '',
+            recipientName: '',
+
         },
 
         methods: {
+            getAvatar: function(image) {
+                return 'img/avatar' + image + '.jpg'
+            },
 
+            dataFind: function(index) {
+
+                let x = this.contacts[index].avatar;
+                this.findAvatar = this.getAvatar(x);
+
+                this.recipientName = this.contacts[index].name;
+                document.querySelector('.messages').style.display = 'flex';
+            }
         },
 
     }

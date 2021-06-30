@@ -16,7 +16,7 @@
     
     <div id="app">
 
-        <div class="container-fluid">
+        <div class="background">
             <div class="container">
                 <div class="row ui">
 
@@ -55,11 +55,11 @@
 
                             <div class="col-12 search">
                                 <i class="fas fa-search"></i>
-                                <input type="text" placeholder="Cerca o inizia una nuova chat" size="42">
+                                <input type="text" placeholder="Cerca o inizia una nuova chat" size="30">
                             </div>
 
-                            <div class="col-12 chat-list" v-for="user in contacts">
-                                <img :src="'img' + '/' + 'avatar' + user.avatar + '.jpg'" alt="">
+                            <div class="col-12 chat-list" v-for="(user, index) in contacts" @click="dataFind(index)">
+                                <img :src="getAvatar(user.avatar)" alt="">
                                 <span>{{user.name}}</span> 
                             </div>
 
@@ -67,7 +67,46 @@
                         
                     </div>
                     
-                    <div class="col-8 messages"></div>
+                    <div class="col-8 bg">
+                        <div class="messages">
+                            <div class="row recipient">
+
+                                <div class="col-4">
+                                    <img class="userPic" :src="findAvatar" alt="">
+                                    <div class="recipientInfo">
+                                        <p>{{ recipientName }}</p>
+                                        <span id="last-access">Ultimo accesso oggi alle:</span>
+                                    </div>
+                                </div>
+
+                                <div class="options col-4">
+                                    <i class="fas fa-search"></i>
+                                    <i class="fas fa-paperclip"></i>
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </div>
+
+                            </div>
+
+                            <div class="row chat-body"></div>
+
+                            <div class="row chat-input">
+
+                                <div class="col">
+                                    <i class="far fa-smile"></i>
+                                </div>
+
+                                <div class="text col-10">
+                                    <input type="text" placeholder="Scrivi un messaggio...">
+                                </div>
+
+                                <div class="col">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
