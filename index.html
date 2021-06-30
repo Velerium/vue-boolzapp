@@ -87,7 +87,14 @@
 
                             </div>
 
-                            <div class="row chat-body"></div>
+                            <div class="row chat-container">
+
+                                <div v-for="(messages, index) in contacts[personIndex].messages" :class="sentReceived(personIndex, index)" class="col-4 chat-messages">
+                                    {{ messages.text }}
+                                    <div class="dateTime"> {{ messages.date }} </div>
+                                </div>
+                                
+                            </div>
 
                             <div class="row chat-input">
 

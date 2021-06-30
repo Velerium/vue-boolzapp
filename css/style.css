@@ -174,8 +174,35 @@ p {
     margin-right: 18px;
 }
 
-.chat-body {
+.chat-container {
+    flex-direction: column;
     flex-grow: 1;
+    padding: 24px 48px;
+}
+
+.sent, .received {
+    position: relative;
+    padding: 18px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+}
+
+.sent {
+    background-color: #dcf8c0;
+    align-self: flex-end;
+}
+
+.received {
+    background-color: #fff;
+    align-self: flex-start;
+}
+
+.dateTime {
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+    font-size: 10px;
+    color: #aaa;
 }
 
 .chat-input {

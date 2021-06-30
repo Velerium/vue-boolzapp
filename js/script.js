@@ -90,6 +90,7 @@ new Vue (
 
             findAvatar: '',
             recipientName: '',
+            personIndex: 0,
 
         },
 
@@ -105,6 +106,16 @@ new Vue (
 
                 this.recipientName = this.contacts[index].name;
                 document.querySelector('.messages').style.display = 'flex';
+
+                this.personIndex = index;
+            },
+
+            sentReceived: function(personIndex, index) {
+                if (this.contacts[personIndex].messages[index].status === 'sent') {
+                    return 'sent';
+                } else if (this.contacts[personIndex].messages[index].status === 'received') {
+                    return 'received';
+                }
             }
         },
 
