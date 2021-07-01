@@ -140,9 +140,18 @@ new Vue (
                     status: 'sent',
                 }
 
-                this.contacts[this.personIndex].messages.push(message)
-                document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
-                this.messageCounter++;
+                this.contacts[this.personIndex].messages.push(message);
+
+                if (this.messageCounter === -1) {
+                    this.messageCounter++;   // Prevents an error if chat is empty
+                } else {
+                    document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
+                    this.messageCounter++;
+                }
+
+                console.log(this.messageCounter);
+
+                let person = this.personIndex
 
                 this.writingMessage = '';
 
@@ -154,16 +163,19 @@ new Vue (
                         text: returnMessage,
                         status: 'received',
                     };
-                    this.contacts[this.personIndex].messages.push(answer);
+                    this.contacts[person].messages.push(answer);
                     document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
                     this.messageCounter++;
+
+                    console.log(this.messageCounter);
 
                 }, 1000)
             },
 
-            delete: function(index) {
-                console.log('AAA');
+            messageErase: function(index) {
                 this.contacts[this.personIndex].messages.splice(index, 1);
+                this.messageCounter--;
+                console.log(this.messageCounter);
             },
 
             search: function() {

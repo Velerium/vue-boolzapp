@@ -195,15 +195,18 @@ p {
     border-radius: 10px;
 }
 
-.chat-container button {
+.fa-trash-alt {
     position: absolute;
     top: 5px;
     right: 7px;
     color: #b1b1b1;
-    border: none;
-    outline: none;
-    background-color: initial;
+    display: none;
+}
+
+.chat-messages:hover .fa-trash-alt {
+    display: inline;
     cursor: pointer;
+    pointer-events: all;
 }
 
 .sent {

@@ -92,9 +92,7 @@
                                 <div v-for="(messages, index) in contacts[personIndex].messages" :class="sentReceived(personIndex, index)" class="col-4 chat-messages">
                                     {{ messages.text }}
                                     <div class="dateTime"> {{ messages.date }} </div>
-                                    <button @click="delete(index)">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
+                                    <i class="fas fa-trash-alt" @click="messageErase(index)"></i>
                                 </div>
                                 
                             </div>
