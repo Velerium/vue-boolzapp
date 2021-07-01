@@ -30,6 +30,7 @@ p {
 
 .ui {
     width: 100%;
+    position: relative;
 }
 
 .user {
@@ -156,6 +157,7 @@ p {
     width: 50px;
     border-radius: 50%;
     margin-right: 12px;
+    transition: all .5s ease-in-out;
 }
 
 .recipient span {
@@ -186,11 +188,25 @@ p {
     flex-wrap: nowrap;
 }
 
-.sent, .received {
+.chat-messages {
     position: relative;
     padding: 18px;
     margin-bottom: 12px;
     border-radius: 10px;
+}
+
+.fa-trash-alt {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    color: #b1b1b1;
+    display: none;
+}
+
+.chat-messages:hover .fa-trash-alt {
+    display: inline;
+    cursor: pointer;
+    pointer-events: all;
 }
 
 .sent {
@@ -218,6 +234,16 @@ p {
 
 .chat-input i {
     font-size: 24px;
+    transition: color .3s ease-in-out;
+}
+
+.chat-input .fa-microphone:hover {
+    color: lawngreen;
+}
+
+.chat-input .fa-smile:hover:before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f585";
 }
 
 .chat-input > div {
@@ -236,6 +262,6 @@ p {
     padding: 20px 0 20px 12px;
 }
 
-.hide {
-    display: none;
+.layer {
+    filter: brightness(30%);
 }

@@ -1,3 +1,5 @@
+Vue.config.devtools = true;
+
 new Vue (
     {
         el: '#app',
@@ -70,7 +72,7 @@ new Vue (
                     ],
                 },
                 {
-                    name: 'Muisa',
+                    name: 'Luisa',
                     avatar: '_6',
                     visible: true,
                     messages: [
@@ -92,9 +94,8 @@ new Vue (
             recipientName: '',
             personIndex: 0,
             writingMessage: '',
-            messageCounter: 2,
-            filter: '',
-
+            messageCounter: 0,
+            filtro: '',
         },
 
         methods: {
@@ -103,6 +104,8 @@ new Vue (
             },
 
             dataFind: function(index) {
+
+                this.messageCounter = this.contacts[index].messages.length - 1;
 
                 this.writingMessage = '';
 
@@ -158,12 +161,21 @@ new Vue (
                 }, 1000)
             },
 
+            delete: function(index) {
+                console.log('AAA');
+                this.contacts[this.personIndex].messages.splice(index, 1);
+            },
+
             search: function() {
-                this.contacts.forEach(person => {
-                    if (person.name[0] !== this.filter[0]) {
-                        return 'hide';
+                const people = document.getElementsByClassName('chat-list');
+                Array.from(people).forEach((person) => {
+                    let user = person.children[1].textContent;
+                    if (user.toLowerCase().includes(this.filtro.toLowerCase())) {
+                        person.style.display = 'block'
+                    } else {
+                        person.style.display = 'none'
                     }
-                });
+                })           // Approccio indiretto, ma andrà bene comunque :D
             },
 
             answerGen: function() {
@@ -183,7 +195,7 @@ new Vue (
                             return 'Okay.';                            
                     }
             },
-        },
+        }
 
     }
 )

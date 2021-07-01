@@ -55,10 +55,10 @@
 
                             <div class="col-12 search">
                                 <i class="fas fa-search"></i>
-                                <input v-model="filter" v-on:keyup="search" type="text" placeholder="Cerca o inizia una nuova chat" size="30">
+                                <input v-model="filtro" v-on:keyup="search" type="text" placeholder="Cerca o inizia una nuova chat" size="30">
                             </div>
 
-                            <div class="col-12 chat-list" v-for="(user, index) in contacts" :class="search()" @click="dataFind(index)">
+                            <div class="col-12 chat-list" v-for="(user, index) in contacts" @click="dataFind(index)">
                                 <img :src="getAvatar(user.avatar)" alt="">
                                 <span>{{user.name}}</span> 
                             </div>
@@ -92,6 +92,7 @@
                                 <div v-for="(messages, index) in contacts[personIndex].messages" :class="sentReceived(personIndex, index)" class="col-4 chat-messages">
                                     {{ messages.text }}
                                     <div class="dateTime"> {{ messages.date }} </div>
+                                    <i class="fas fa-trash-alt" @click.native="delete(index)"></i>
                                 </div>
                                 
                             </div>
