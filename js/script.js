@@ -70,7 +70,7 @@ new Vue (
                     ],
                 },
                 {
-                    name: 'Luisa',
+                    name: 'Muisa',
                     avatar: '_6',
                     visible: true,
                     messages: [
@@ -93,6 +93,7 @@ new Vue (
             personIndex: 0,
             writingMessage: '',
             messageCounter: 2,
+            filter: '',
 
         },
 
@@ -141,7 +142,47 @@ new Vue (
                 this.messageCounter++;
 
                 this.writingMessage = '';
-            }
+
+                let returnMessage = this.answerGen();
+
+                setTimeout (() => {
+                    let answer = {
+                        date: 'No idea how to set the time.',
+                        text: returnMessage,
+                        status: 'received',
+                    };
+                    this.contacts[this.personIndex].messages.push(answer);
+                    document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
+                    this.messageCounter++;
+
+                }, 1000)
+            },
+
+            search: function() {
+                this.contacts.forEach(person => {
+                    if (person.name[0] !== this.filter[0]) {
+                        return 'hide';
+                    }
+                });
+            },
+
+            answerGen: function() {
+                let x = Math.floor(Math.random() * 6);
+                    switch (x) {
+                        case 0:
+                            return 'Certo!';
+                        case 1:
+                            return 'Non ci credo!';
+                        case 2:
+                            return 'Wow!';
+                        case 3:
+                            return 'HAHHAHAHA';
+                        case 4:
+                            return 'No, mi dispiace.';
+                        case 5:
+                            return 'Okay.';                            
+                    }
+            },
         },
 
     }
