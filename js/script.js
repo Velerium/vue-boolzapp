@@ -170,6 +170,7 @@ new Vue (
             },
 
             messageErase: function(index) {
+                
                 this.contacts[this.personIndex].messages.splice(index, 1);
                 this.messageCounter--;
 
@@ -243,13 +244,31 @@ new Vue (
             },
 
             getLastMessage: function(index) {
-                if (this.contacts[index].messages.length === 0) {
+
+                let messageNumber = this.contacts[index].messages;
+
+                if (messageNumber.length === 0) {
                     return '';
                 } else {
-                    return this.contacts[index].messages[this.contacts[index].messages.length - 1].text
+                    return messageNumber[messageNumber.length - 1].text;
                 }
                 
-            }
+            },
+
+            dropdown: function(index) {
+                let show = document.querySelectorAll('.dropdown-content');
+
+                for (x = 0; x < show.length; x++) {
+                    show[x].style.display = 'none';
+                }
+
+                if (show[index] === undefined) {
+                    return;
+                }
+
+                show[index].style.display = 'inline';
+
+            },
 
         }
 

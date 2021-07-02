@@ -4,7 +4,6 @@
     box-sizing: border-box;
 }
 
-
 p {
     margin: 0;
     font-size: 15px;
@@ -215,6 +214,13 @@ p {
     flex-wrap: nowrap;
 }
 
+.dropdown {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 7px;
+}
+
 .chat-messages {
     position: relative;
     padding: 18px;
@@ -222,18 +228,30 @@ p {
     border-radius: 10px;
 }
 
-.fa-trash-alt {
-    position: absolute;
-    top: 5px;
-    right: 7px;
+.fa-chevron-down {
     color: #b1b1b1;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 30px;
+    right: 1px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    cursor: pointer;
     display: none;
 }
 
-.chat-messages:hover .fa-trash-alt {
-    display: inline;
-    cursor: pointer;
-    pointer-events: all;
+.dropdown-content div {
+    padding: 15px 20px;
+}
+
+.dropdown-content div:hover {
+    background-color: #ddd;
 }
 
 .sent {

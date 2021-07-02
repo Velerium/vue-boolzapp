@@ -12,6 +12,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-clickaway@2.2.2/dist/vue-clickaway.min.js"></script>
 </head>
 <body>
     
@@ -108,7 +109,15 @@
                                 <div v-for="(messages, index) in contacts[personIndex].messages" :class="sentReceived(personIndex, index)" class="col-4 chat-messages">
                                     {{ messages.text }}
                                     <div class="dateTime"> {{ messages.date }} </div>
-                                    <i class="fas fa-trash-alt" @click="messageErase(index)"></i>
+
+                                    <div class="dropdown" @click="dropdown(index)">
+                                        <i class="fas fa-chevron-down"></i>
+                                        <div class="dropdown-content">
+                                            <div>Message info</div>
+                                            <div @click="messageErase(index)">Delete Message</div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 
                             </div>
