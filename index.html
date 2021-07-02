@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 </head>
 <body>
     
@@ -59,8 +60,23 @@
                             </div>
 
                             <div class="col-12 chat-list" v-for="(user, index) in contacts" @click="dataFind(index)">
-                                <img :src="getAvatar(user.avatar)" alt="">
-                                <span>{{user.name}}</span> 
+
+                                <div class="col-3">
+                                    <img :src="getAvatar(user.avatar)" alt="">
+                                </div>
+
+                                <div class="col-9 chat-list" @click="dataFind(index)">
+                                    
+                                    <div class="row user-name">
+                                        <span class="col-4">{{ user.name }}</span>
+                                        <span class="col-8 last-message-time">Last message: {{ lastMessageTimes[index] }}</span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span class="last-message-text">{{ user.messages[user.messages.length - 1].text }}</span>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>

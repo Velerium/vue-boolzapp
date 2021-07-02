@@ -113,18 +113,45 @@ p {
 }
 
 .chats .chat-list {
-    margin-bottom: 12px;
     border-bottom: 1px solid #eee;
+    display: flex;
+}
+
+.chats .chat-list.col-9 {
+    flex-direction: column;
 }
 
 .chats .chat-list img{
     width: 70px;
     border-radius: 50%;
-    margin: 0 12px 12px 0;
+    margin: 12px 12px 12px 0;
 }
 
-.chats .chat-list span {
+
+.chats .chat-list .user-name {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chats .chat-list .user-name span:first-child {
     font-weight: 500;
+}
+
+.chats .chat-list .last-message-time {
+    margin-left: auto;
+    font-weight: 300;
+    font-size: 12px;
+    width: 200px;
+    text-align: left;
+}
+
+.chats .chat-list .last-message-text {
+    margin-top: 12px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .bg {

@@ -90,12 +90,24 @@ new Vue (
                 },
             ],
 
+            lastMessageTimes: [
+            ],
+
             findAvatar: '',
             recipientName: '',
             personIndex: 0,
             writingMessage: '',
             messageCounter: 0,
             filtro: '',
+            
+        },
+
+        created: function() {
+            
+            this.contacts.forEach((person, index) => {
+                this.lastMessageTimes.push('');
+                this.lastMessageTimes[index] = person.messages[person.messages.length - 1].date
+            });
         },
 
         methods: {
@@ -135,7 +147,7 @@ new Vue (
                 }
 
                 let message = {
-                    date: 'No idea how to set the time.',
+                    date: this.getTime(),
                     text: this.writingMessage,
                     status: 'sent',
                 }
@@ -149,33 +161,18 @@ new Vue (
                     this.messageCounter++;
                 }
 
-                console.log(this.messageCounter);
-
-                let person = this.personIndex
-
                 this.writingMessage = '';
 
-                let returnMessage = this.answerGen();
+                this.updateTime();
 
-                setTimeout (() => {
-                    let answer = {
-                        date: 'No idea how to set the time.',
-                        text: returnMessage,
-                        status: 'received',
-                    };
-                    this.contacts[person].messages.push(answer);
-                    document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
-                    this.messageCounter++;
+                this.answerGen();
 
-                    console.log(this.messageCounter);
-
-                }, 1000)
             },
 
             messageErase: function(index) {
                 this.contacts[this.personIndex].messages.splice(index, 1);
                 this.messageCounter--;
-                console.log(this.messageCounter);
+
             },
 
             search: function() {
@@ -183,30 +180,68 @@ new Vue (
                 Array.from(people).forEach((person) => {
                     let user = person.children[1].textContent;
                     if (user.toLowerCase().includes(this.filtro.toLowerCase())) {
-                        person.style.display = 'block'
+                        person.style.display = 'block';
                     } else {
-                        person.style.display = 'none'
+                        person.style.display = 'none';
                     }
                 })           // Approccio indiretto, ma andrà bene comunque :D
             },
 
             answerGen: function() {
+
                 let x = Math.floor(Math.random() * 6);
+
+                let answer = '';
+
                     switch (x) {
                         case 0:
-                            return 'Certo!';
+                            answer = 'Certo!';
+                            break;
                         case 1:
-                            return 'Non ci credo!';
+                            answer = 'Non ci credo!';
+                            break;
                         case 2:
-                            return 'Wow!';
+                            answer = 'Wow!';
+                            break;
                         case 3:
-                            return 'HAHHAHAHA';
+                            answer = 'HAHHAHAHA';
+                            break;
                         case 4:
-                            return 'No, mi dispiace.';
+                            answer = 'No, mi dispiace.';
+                            break;
                         case 5:
-                            return 'Okay.';                            
+                            answer = 'Okay.';
+                            break;                            
                     }
+
+                setTimeout (() => {
+                    let reply = {
+                        date: this.getTime(),
+                        text: answer,
+                        status: 'received',
+                    };
+                    this.contacts[this.personIndex].messages.push(reply);
+                    document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
+                    this.messageCounter++;
+
+                    this.updateTime();
+                    
+                }, 2000)
+
             },
+
+            getTime: function() {
+                return dayjs().format('DD/MM/YYYY HH:mm:ss')
+            },
+
+            updateTime: function() {
+
+                let person = this.personIndex;
+
+                this.lastMessageTimes[person] =
+                this.contacts[person].messages[this.contacts[person].messages.length - 1].date
+            }
+
         }
 
     }
