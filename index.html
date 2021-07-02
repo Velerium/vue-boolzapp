@@ -66,14 +66,14 @@
                                 </div>
 
                                 <div class="col-9 chat-list" @click="dataFind(index)">
-                                    
+
                                     <div class="row user-name">
                                         <span class="col-4">{{ user.name }}</span>
                                         <span class="col-8 last-message-time">Last message: {{ lastMessageTimes[index] }}</span>
                                     </div>
 
                                     <div class="row">
-                                        <span class="last-message-text">{{ user.messages[user.messages.length - 1].text }}</span>
+                                        <span class="last-message-text">{{ getLastMessage(index) }}</span>
                                     </div>
 
                                 </div>

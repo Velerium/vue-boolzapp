@@ -225,7 +225,7 @@ new Vue (
                     this.messageCounter++;
 
                     this.updateTime();
-                    
+
                 }, 2000)
 
             },
@@ -240,6 +240,15 @@ new Vue (
 
                 this.lastMessageTimes[person] =
                 this.contacts[person].messages[this.contacts[person].messages.length - 1].date
+            },
+
+            getLastMessage: function(index) {
+                if (this.contacts[index].messages.length === 0) {
+                    return '';
+                } else {
+                    return this.contacts[index].messages[this.contacts[index].messages.length - 1].text
+                }
+                
             }
 
         }
