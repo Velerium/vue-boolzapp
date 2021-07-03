@@ -12,7 +12,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue-clickaway@2.2.2/dist/vue-clickaway.min.js"></script>
 </head>
 <body>
     
@@ -22,7 +21,7 @@
             <div class="container">
                 <div class="row ui">
 
-                    <div class="col-4 left">
+                    <div class="col-4 left" @click="hideDrop">
 
                         <div class="row user">
                             <div class="col-8">
@@ -104,13 +103,13 @@
 
                             </div>
 
-                            <div class="row chat-container">
+                            <div class="row chat-container" @click.self="hideDrop">
 
                                 <div v-for="(messages, index) in contacts[personIndex].messages" :class="sentReceived(personIndex, index)" class="col-4 chat-messages">
                                     {{ messages.text }}
                                     <div class="dateTime"> {{ messages.date }} </div>
 
-                                    <div class="dropdown" @click="dropdown(index)">
+                                    <div class="dropdown" @click="dropdownF(index)">
                                         <i class="fas fa-chevron-down"></i>
                                         <div class="dropdown-content">
                                             <div>Message info</div>

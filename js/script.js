@@ -111,6 +111,7 @@ new Vue (
         },
 
         methods: {
+
             getAvatar: function(image) {
                 return 'img/avatar' + image + '.jpg'
             },
@@ -130,6 +131,8 @@ new Vue (
                 this.personIndex = index;
 
                 document.querySelector('#text-box').focus();
+
+                this.hideDrop();
             },
 
             sentReceived: function(personIndex, index) {
@@ -157,7 +160,11 @@ new Vue (
                 if (this.messageCounter === -1) {
                     this.messageCounter++;   // Prevents an error if chat is empty
                 } else {
-                    document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
+
+                    setTimeout(() => {
+                        this.hideDrop();
+                        document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
+                    }, 0)
                     this.messageCounter++;
                 }
 
@@ -171,8 +178,15 @@ new Vue (
 
             messageErase: function(index) {
                 
+                
                 this.contacts[this.personIndex].messages.splice(index, 1);
                 this.messageCounter--;
+
+                setTimeout (() => {
+                    this.hideDrop();
+                })
+
+                this.updateTime();
 
             },
 
@@ -227,6 +241,8 @@ new Vue (
 
                     this.updateTime();
 
+                    this.hideDrop();
+
                 }, 2000)
 
             },
@@ -238,6 +254,11 @@ new Vue (
             updateTime: function() {
 
                 let person = this.personIndex;
+
+                if (this.contacts[person].messages.length === 0) {
+                    this.lastMessageTimes[person] = '';
+                    return;
+                }
 
                 this.lastMessageTimes[person] =
                 this.contacts[person].messages[this.contacts[person].messages.length - 1].date
@@ -255,20 +276,32 @@ new Vue (
                 
             },
 
-            dropdown: function(index) {
+            dropdownF: function(index) {
+                
                 let show = document.querySelectorAll('.dropdown-content');
-
-                for (x = 0; x < show.length; x++) {
-                    show[x].style.display = 'none';
-                }
 
                 if (show[index] === undefined) {
                     return;
                 }
 
-                show[index].style.display = 'inline';
-
+                if (show[index].style.visibility === 'visible') {
+                    this.hideDrop();
+                } else if (show[index].style.visibility === '') {
+                    this.hideDrop();
+                    show[index].style.visibility = 'visible';
+                }
             },
+
+            hideDrop: function() {
+                
+                    let show = document.querySelectorAll('.dropdown-content');
+
+                    for (x = 0; x < show.length; x++) {
+                        show[x].style.visibility = '';
+                    }
+                
+                
+            }
 
         }
 
