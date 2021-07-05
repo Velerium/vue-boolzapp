@@ -99,7 +99,9 @@ new Vue (
             writingMessage: '',
             messageCounter: 0,
             filtro: '',
-            
+            onlineStatus: '',
+            personAnswer: '',
+
         },
 
         created: function() {
@@ -129,6 +131,8 @@ new Vue (
                 document.querySelector('.messages').style.display = 'flex';
 
                 this.personIndex = index;
+
+                this.updateTime();
 
                 document.querySelector('#text-box').focus();
 
@@ -204,6 +208,8 @@ new Vue (
 
             answerGen: function() {
 
+                this.personAnswer = this.personIndex
+
                 let x = Math.floor(Math.random() * 6);
 
                 let answer = '';
@@ -235,7 +241,7 @@ new Vue (
                         text: answer,
                         status: 'received',
                     };
-                    this.contacts[this.personIndex].messages.push(reply);
+                    this.contacts[this.personAnswer].messages.push(reply);
                     document.querySelectorAll('.chat-messages')[this.messageCounter].scrollIntoView();
                     this.messageCounter++;
 
@@ -260,8 +266,14 @@ new Vue (
                     return;
                 }
 
-                this.lastMessageTimes[person] =
-                this.contacts[person].messages[this.contacts[person].messages.length - 1].date
+                if (this.contacts[person].messages[this.contacts[person].messages.length - 1].status === 'sent') {
+                    this.onlineStatus = 'Online'
+                } else {
+                    this.onlineStatus = 'Ultimo accesso oggi alle: ';
+                    this.lastMessageTimes[person] =
+                    this.contacts[person].messages[this.contacts[person].messages.length - 1].date
+                }
+
             },
 
             getLastMessage: function(index) {

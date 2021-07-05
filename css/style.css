@@ -56,6 +56,7 @@ p {
     align-items: center;
     justify-content: space-evenly;
     color: #b1b1b1;
+    cursor: pointer;
 }
 
 .notifications {
@@ -88,6 +89,7 @@ p {
     font-size: 13px;
     color: #628295;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .chats {
@@ -111,9 +113,14 @@ p {
     outline: none;
 }
 
+.chats .full:hover {
+    background-color: #eee;
+}
+
 .chats .chat-list {
     border-bottom: 1px solid #eee;
     display: flex;
+    cursor: pointer;
 }
 
 .chats .chat-list.col-9 {
@@ -186,15 +193,21 @@ p {
     transition: all .5s ease-in-out;
 }
 
-.recipient span {
+.recipient .recipientInfo div {
+    display: inline-block;
     vertical-align: middle;
     font-size: 14px;
     color: #999;
     font-weight: 400;
 }
 
+
 .recipient > div > div {
     display: inline-block;
+}
+
+.recipient #last-access {
+    font-size: 12px;
 }
 
 .options {
@@ -204,6 +217,7 @@ p {
 .options i {
     color: #b1b1b1;
     margin-right: 18px;
+    cursor: pointer;
 }
 
 .chat-container {
@@ -225,7 +239,6 @@ p {
     position: relative;
     padding: 18px;
     margin-bottom: 12px;
-    border-radius: 10px;
 }
 
 .fa-chevron-down {
@@ -257,11 +270,13 @@ p {
 .sent {
     background-color: #dcf8c0;
     align-self: flex-end;
+    border-radius: 12px 12px 0 12px;
 }
 
 .received {
     background-color: #fff;
     align-self: flex-start;
+    border-radius: 12px 12px 12px 0;
 }
 
 .dateTime {
@@ -280,6 +295,7 @@ p {
 .chat-input i {
     font-size: 24px;
     transition: color .3s ease-in-out;
+    cursor: pointer;
 }
 
 .chat-input .fa-microphone:hover {

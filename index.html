@@ -87,11 +87,11 @@
                         <div class="messages">
                             <div class="row recipient">
 
-                                <div class="col-4">
+                                <div class="col-5">
                                     <img class="userPic" :src="findAvatar" alt="">
                                     <div class="recipientInfo">
                                         <p>{{ recipientName }}</p>
-                                        <span id="last-access">Ultimo accesso oggi alle:</span>
+                                        <div id="last-access">{{ onlineStatus }} <span v-if="onlineStatus === 'Ultimo accesso oggi alle: '">{{ lastMessageTimes[personIndex] }} </span> </div>
                                     </div>
                                 </div>
 
