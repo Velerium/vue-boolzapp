@@ -191,11 +191,11 @@ new Vue (
             },
 
             search: function() {
-                const people = document.getElementsByClassName('chat-list');
+                const people = document.getElementsByClassName('full');
                 Array.from(people).forEach((person) => {
-                    let user = person.children[1].textContent;
+                    let user = person.children[1].firstChild.firstChild.textContent;
                     if (user.toLowerCase().includes(this.filtro.toLowerCase())) {
-                        person.style.display = 'block';
+                        person.style.display = 'flex';
                     } else {
                         person.style.display = 'none';
                     }

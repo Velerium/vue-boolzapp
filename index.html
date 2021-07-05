@@ -59,7 +59,7 @@
                                 <input v-model="filtro" v-on:keyup="search" type="text" placeholder="Cerca o inizia una nuova chat" size="30">
                             </div>
 
-                            <div class="col-12 chat-list" v-for="(user, index) in contacts" @click="dataFind(index)">
+                            <div class="col-12 chat-list full" v-for="(user, index) in contacts" @click="dataFind(index)">
 
                                 <div class="col-3">
                                     <img :src="getAvatar(user.avatar)" alt="">
